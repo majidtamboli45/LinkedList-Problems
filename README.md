@@ -29,19 +29,6 @@ The goal of this repository is to help understand how linked lists work and how 
 
 ---
 
-
-
-Linkedlist-problems/
-│
-├── insertion.cpp
-├── deletion.cpp
-├── reverse_linkedlist.cpp
-├── detect_cycle.cpp
-├── merge_linkedlist.cpp
-└── README.md
-
-
-
 Each file contains a solution to a specific linked list problem with clear logic and comments.
 
 ---
@@ -55,9 +42,5 @@ Each file contains a solution to a specific linked list problem with clear logic
 
 ---
 
-## 🚀 How to Use
-
-1. Clone the repository
 
 
-## 📂 Repository Structure
