@@ -39,6 +39,56 @@ public:
         }
     };
 
+    void push_back(int val)
+    {
+        Node* newNode = new Node(val);
+
+        if(head == NULL)
+        {
+            head = tail = newNode;
+            return;
+        }
+        else
+        {
+            tail -> next = newNode;
+            tail = newNode;
+        }
+    }
+
+    void pop_front()
+    {
+        if(head==NULL)
+        {
+            return ;
+        }
+        else
+        {
+            Node* temp = head;
+            head = head -> next;
+            temp -> next = NULL;
+
+            delete temp;
+        }
+
+    };
+
+    void pop_back()
+    {
+        if(head ==  NULL)
+        {
+            return ;
+        }
+        Node* temp = head;
+        while(temp->next != tail)
+        {
+            temp = temp ->next;
+        }
+        temp -> next = NULL;
+
+        delete tail;
+        tail = temp;
+    }
+
     void printLL()
     {
         Node* temp = head;
@@ -59,6 +109,19 @@ int main ()
     ll.push_front(1);
     ll.push_front(2);
     ll.push_front(3);
+
+    ll.printLL();
+
+    ll.push_back(4);
+
+    ll.printLL();
+
+    ll.pop_front();
+    ll.printLL();
+    
+    ll.pop_back();
+
     ll.printLL();
     return 0;
+
 }
