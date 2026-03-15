@@ -2,66 +2,95 @@
 
 ![DSA](https://img.shields.io/badge/Data%20Structure-Linked%20List-blue)
 ![Language](https://img.shields.io/badge/Language-C++-orange)
-![Difficulty](https://img.shields.io/badge/Level-Beginner%20to%20Intermediate-green)
+![Level](https://img.shields.io/badge/Difficulty-Beginner%20to%20Intermediate-green)
+![License](https://img.shields.io/badge/License-MIT-lightgrey)
+
+A **Linked List** is a fundamental **dynamic data structure** used in computer science and software engineering to efficiently store and manage collections of data.
+
+Unlike arrays, linked lists **store elements in nodes connected using pointers**, allowing flexible memory usage and efficient insertions and deletions.
 
 ---
 
-## 📖 Table of Contents
+# 📚 Table of Contents
 
-* [Introduction](#-introduction)
-* [Basic Operations](#-basic-operations-on-linked-list)
-* [Linked List Representation](#-linked-list-representation)
-* [C++ Implementation](#-c-implementation)
-* [Types of Linked Lists](#-types-of-linked-lists)
-* [Time Complexity](#-time-complexity)
-* [Applications](#-applications-of-linked-lists)
-* [Advantages](#-advantages)
-* [Limitations](#-limitations)
-* [Example Problems](#-example-problems)
-* [Author](#-author)
+- [Introduction](#-introduction)
+- [Node Structure](#-node-structure)
+- [Basic Operations](#-basic-operations)
+- [Linked List Representation](#-linked-list-representation)
+- [C++ Implementation](#-c-implementation)
+- [Types of Linked Lists](#-types-of-linked-lists)
+- [Time Complexity](#-time-complexity-analysis)
+- [Applications](#-applications)
+- [Advantages](#-advantages)
+- [Limitations](#-limitations)
+- [Practice Problems](#-practice-problems)
+- [Author](#-author)
 
 ---
 
 # 📌 Introduction
 
-A **Linked List** is a linear data structure where elements are stored in **nodes**, and each node points to the **next node** in the sequence.
+A **Linked List** is a **linear data structure** where each element (called a **node**) contains:
 
-Unlike arrays, linked lists **do not store elements in contiguous memory locations**.
+- **Data** → The value stored in the node  
+- **Pointer** → The memory address of the next node  
 
-Each node contains:
+Unlike arrays, elements in a linked list **are not stored in contiguous memory locations**.
 
-* **Data** → Value stored in the node
-* **Pointer** → Address of the next node
+This makes linked lists **dynamic and flexible**.
 
 ---
 
-# 🧱 Basic Operations on Linked List
+# 🧱 Node Structure
 
-| Operation | Description      |
-| --------- | ---------------- |
-| Insertion | Add a new node   |
-| Deletion  | Remove a node    |
-| Traversal | Visit all nodes  |
-| Search    | Find a node      |
-| Update    | Modify node data |
+Each node consists of two parts:
+
+```
++-------+--------+
+| Data  | Next   |
++-------+--------+
+```
+
+Example node representation:
+
+```
+[10 | next] → [20 | next] → [30 | next] → [40 | NULL]
+```
+
+---
+
+# ⚙️ Basic Operations
+
+| Operation | Description |
+|----------|-------------|
+| **Insertion** | Add a new node |
+| **Deletion** | Remove a node |
+| **Traversal** | Visit all nodes |
+| **Search** | Find a node |
+| **Update** | Modify node data |
 
 ---
 
 # 📊 Linked List Representation
 
-Example:
+Example Linked List:
 
-```text
-[10 | next] → [20 | next] → [30 | next] → [40 | NULL]
+```
+Head
+ ↓
+[10 | • ] → [20 | • ] → [30 | • ] → [40 | NULL]
 ```
 
-Each block represents a **node containing data and pointer**.
+Where:
+
+- `Head` stores the address of the first node
+- `NULL` indicates the end of the list
 
 ---
 
 # 💻 C++ Implementation
 
-Example of a **simple singly linked list node**.
+Example of a **simple singly linked list** in C++.
 
 ```cpp
 #include <iostream>
@@ -72,13 +101,13 @@ public:
     int data;
     Node* next;
 
-    Node(int value){
+    Node(int value) {
         data = value;
         next = NULL;
     }
 };
 
-int main(){
+int main() {
 
     Node* head = new Node(10);
     head->next = new Node(20);
@@ -86,113 +115,141 @@ int main(){
 
     Node* temp = head;
 
-    while(temp != NULL){
-        cout << temp->data << " ";
+    cout << "Linked List: ";
+
+    while (temp != NULL) {
+        cout << temp->data << " -> ";
         temp = temp->next;
     }
 
+    cout << "NULL";
+
     return 0;
 }
+```
+
+### Output
+
+```
+Linked List: 10 -> 20 -> 30 -> NULL
 ```
 
 ---
 
 # 🔄 Types of Linked Lists
 
-### 1️⃣ Singly Linked List
+## 1️⃣ Singly Linked List
 
-Each node points to the **next node only**.
+Each node points **only to the next node**.
 
-### 2️⃣ Doubly Linked List
-
-Each node has:
-
-* pointer to **next node**
-* pointer to **previous node**
-
-### 3️⃣ Circular Linked List
-
-The **last node points back to the first node**.
+```
+[10] → [20] → [30] → [NULL]
+```
 
 ---
 
-# ⚙️ Time Complexity
+## 2️⃣ Doubly Linked List
 
-| Operation | Complexity |
-| --------- | ---------- |
-| Access    | O(n)       |
-| Search    | O(n)       |
-| Insertion | O(1)       |
-| Deletion  | O(1)       |
+Each node has two pointers:
+
+- Previous node
+- Next node
+
+```
+NULL ← [10] ⇄ [20] ⇄ [30] → NULL
+```
+
+---
+
+## 3️⃣ Circular Linked List
+
+The **last node points back to the first node**.
+
+```
+[10] → [20] → [30]
+  ↑               ↓
+  ← ← ← ← ← ← ← ←
+```
+
+---
+
+# ⏱ Time Complexity Analysis
+
+| Operation | Time Complexity |
+|----------|----------------|
+| Access | O(n) |
+| Search | O(n) |
+| Insertion (Beginning) | O(1) |
+| Insertion (End) | O(n) |
+| Deletion | O(1) |
 
 Insertion and deletion are **faster than arrays** because elements do not need shifting.
 
 ---
 
-# 📚 Applications of Linked Lists
+# 📚 Applications
 
-Linked lists are used in many systems and algorithms.
+### 🔹 Dynamic Memory Allocation
 
-### 1️⃣ Dynamic Memory Allocation
+Linked lists allow **memory allocation at runtime**.
 
-Memory can grow or shrink dynamically.
-
-### 2️⃣ Implementing Other Data Structures
+### 🔹 Implementing Other Data Structures
 
 Used to implement:
 
-* Stacks
-* Queues
-* Graph adjacency lists
+- Stacks
+- Queues
+- Graph adjacency lists
+- Hash tables
 
-### 3️⃣ Undo/Redo Operations
+### 🔹 Undo / Redo Operations
 
-Used in text editors and applications.
+Used in text editors.
 
-### 4️⃣ Music Playlist
+### 🔹 Music Playlist
 
-Each song can be a node pointing to the next song.
+Each song links to the next song.
 
-### 5️⃣ Browser History
+### 🔹 Browser History
 
-Used for navigating **back and forward** pages.
+Allows **forward and backward navigation**.
 
 ---
 
 # 🚀 Advantages
 
-✔ Dynamic size
-✔ Efficient insertion and deletion
-✔ No need for contiguous memory
-✔ Flexible data structure
+✔ Dynamic size  
+✔ Efficient insertion and deletion  
+✔ No need for contiguous memory  
+✔ Flexible memory allocation  
 
 ---
 
 # ⚠️ Limitations
 
-❌ Extra memory required for pointers
-❌ Slower access compared to arrays
-❌ More complex implementation
+❌ Extra memory required for pointers  
+❌ Slower access compared to arrays  
+❌ No direct indexing  
+❌ More complex implementation  
 
 ---
 
-# 📖 Example Problems
+# 📖 Practice Problems
 
-1️⃣ Reverse a Linked List
-2️⃣ Detect Cycle in Linked List
-3️⃣ Merge Two Sorted Lists
-4️⃣ Remove Nth Node From End
-5️⃣ Find Middle of Linked List
+1. Reverse a Linked List  
+2. Detect Cycle in Linked List  
+3. Merge Two Sorted Linked Lists  
+4. Remove Nth Node From End  
+5. Find Middle of Linked List  
+6. Check if Linked List is Palindrome  
 
 ---
 
 # 👨‍💻 Author
 
-**Prepared by:**
+**Majid Tamboli**
 
-### Majid Tamboli
-
-🔗 GitHub:
+GitHub:  
 https://github.com/majidtamboli45
 
-📘 Created as part of **Data Structures and Algorithms (DSA) practice using C++**.
+⭐ If you found this useful, consider **starring the repository**.
