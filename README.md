@@ -412,4 +412,7 @@ git branch
 git status
 
 git log --oneline
+______________________________________________________________________________________________________________________
 
+
+jenkins password Reset :- sudo cat /var/lib/jenkins/secrets/initialAdminPassword
